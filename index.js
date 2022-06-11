@@ -7,10 +7,13 @@ module.exports = fp(
       root: path.join(__dirname, 'dist'),
       prefix: '/fastify-overview-ui/'
     })
-    fastify.get('/json-overview-ui', async () => fastify.overview())
+    await fastify.get('/fastify-overview-ui', (req, reply) => {
+      reply.sendFile('index.html')
+    })
+    await fastify.get('/json-overview-ui', async () => fastify.overview())
   },
   {
-    fastify: '3.x',
+    fastify: '4.x',
     name: 'fastify-overview-ui',
     dependencies: ['fastify-overview']
   }
